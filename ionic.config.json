@@ -1,0 +1,7 @@
+{
+  "name": "restaurante-venta-frontend",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}

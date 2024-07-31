@@ -1,0 +1,12 @@
+.logout-icon {
+  font-size: 24px; // Tamaño del ícono
+
+  color: var(
+    --ion-color-danger
+  ); // Color del ícono, usa el color de tu preferencia
+  cursor: pointer; // Cambia el cursor al pasar sobre el ícono para indicar que es clickeable
+}
+
+.logout-icon:hover {
+  opacity: 0.7; // Efecto al pasar el mouse sobre el ícono
+}

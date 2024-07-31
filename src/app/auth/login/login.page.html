@@ -1,0 +1,82 @@
+<ion-content class="ion-padding">
+  <div
+    class="bg-card p-8 rounded-lg shadow-lg w-full max-w-md border border-border login-container"
+  >
+    <h1 class="text-3xl font-bold text-center text-primary mb-4">Delikat</h1>
+    <h2 class="text-xl font-semibold text-center text-foreground mb-6">
+      {{titleText}}
+    </h2>
+    <form
+      [formGroup]="changeState ? loginForm : registroForm"
+      (ngSubmit)="onSubmit()"
+    >
+      <div class="mb-4">
+        <ion-label
+          class="block text-sm font-medium text-foreground"
+          position="stacked"
+          >Email</ion-label
+        >
+        <ion-input
+          type="email"
+          formControlName="email"
+          class="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm bg-input text-foreground focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+        ></ion-input>
+        <div
+          *ngIf="(changeState ? loginForm : registroForm).get('email')?.invalid && (changeState ? loginForm : registroForm).get('email')?.touched"
+          class="text-red-500 text-sm"
+        >
+          <div
+            *ngIf="(changeState ? loginForm : registroForm).get('email')?.errors?.['required']"
+          >
+            El email es requerido.
+          </div>
+          <div
+            *ngIf="(changeState ? loginForm : registroForm).get('email')?.errors?.['email']"
+          >
+            Email no válido.
+          </div>
+        </div>
+      </div>
+      <div class="mb-6">
+        <ion-label
+          class="block text-sm font-medium text-foreground"
+          position="stacked"
+          >Contraseña</ion-label
+        >
+        <ion-input
+          type="password"
+          formControlName="password"
+          class="mt-1 block w-full px-3 py-2 border border-border rounded-md shadow-sm bg-input text-foreground focus:outline-none focus:ring-primary focus:border-primary sm:text-sm"
+        ></ion-input>
+        <div
+          *ngIf="(changeState ? loginForm : registroForm).get('password')?.invalid && (changeState ? loginForm : registroForm).get('password')?.touched"
+          class="text-red-500 text-sm"
+        >
+          <div
+            *ngIf="(changeState ? loginForm : registroForm).get('password')?.errors?.['required']"
+          >
+            La contraseña es requerida.
+          </div>
+          <div
+            *ngIf="(changeState ? loginForm : registroForm).get('password')?.errors?.['minlength']"
+          >
+            La contraseña debe tener al menos 6 caracteres.
+          </div>
+        </div>
+      </div>
+      <ion-button
+        expand="block"
+        type="submit"
+        class="w-full text-primary-foreground py-2 rounded-md focus:outline-none focus:ring-opacity-50"
+        [disabled]="(changeState ? loginForm : registroForm).invalid"
+      >
+        {{titleText}}
+      </ion-button>
+    </form>
+    <p class="mt-6 text-center text-muted-foreground">
+      <button class="underline" (click)="toggleChange()">
+        {{ changeState ? "¿No tienes una cuenta?" : "Tengo Cuenta!" }}
+      </button>
+    </p>
+  </div>
+</ion-content>

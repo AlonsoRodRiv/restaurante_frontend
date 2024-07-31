@@ -1,0 +1,75 @@
+<ion-content class="ion-padding" [fullscreen]="true">
+  <div>
+    <h2 class="text-2xl font-bold mb-6 flex justify-center">
+      Agregar Nuevo Producto
+    </h2>
+    <form
+      #productForm="ngForm"
+      (ngSubmit)="onSubmit(productForm)"
+      class="space-y-4"
+    >
+      <div class="flex flex-col items-center">
+        <img
+          [src]="productImagePreview"
+          alt="Product Preview"
+          class="mb-4 w-24 h-24 object-cover rounded-full"
+        />
+        <input
+          type="file"
+          #fileInput
+          (change)="onFileSelected($event)"
+          accept="image/*"
+          class="hidden"
+        />
+        <ion-button
+          (click)="fileInput.click()"
+          expand="block"
+          fill="outline"
+          class="mb-4"
+        >
+          Subir Imagen
+        </ion-button>
+      </div>
+      <ion-item>
+        <ion-input
+          type="nombre"
+          fill="solid"
+          label="Nombre del Producto"
+          labelPlacement="floating"
+          name="name"
+          ngModel
+          required
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-textarea
+          label="Descripcion"
+          labelPlacement="floating"
+          name="description"
+          ngModel
+          required
+          rows="1"
+        ></ion-textarea>
+      </ion-item>
+      <ion-item>
+        <!-- <ion-label position="floating">Precio</ion-label> -->
+        <!-- <ion-input type="number" name="price" ngModel required></ion-input> -->
+        <ion-input
+          type="number"
+          fill="solid"
+          label="Precio"
+          labelPlacement="floating"
+          name="price"
+          ngModel
+          required
+        ></ion-input>
+      </ion-item>
+      <div class="flex justify-between mt-4">
+        <ion-button type="button" color="medium" (click)="dismissModal()"
+          >Cancelar</ion-button
+        >
+        <ion-button type="submit">Agregar Producto</ion-button>
+      </div>
+    </form>
+  </div>
+</ion-content>

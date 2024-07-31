@@ -1,0 +1,68 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Carrito</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="close()">Cerrar</ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div>
+    <!-- <h2 class="text-lg font-bold mb-4">Carrito</h2> -->
+    <div class="bg-background p-4 rounded-md">
+      <table class="w-full">
+        <thead>
+          <tr>
+            <th class="text-left">Producto</th>
+            <th class="text-right">Precio</th>
+            <th class="text-right">Acción</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of cart">
+            <td>{{ producto.name }} X{{ producto.amount }}</td>
+
+            <td class="text-right">
+              {{ producto.price | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+            <td class="text-right">
+              <ion-button
+                fill="clear"
+                (click)="removeCartItem(producto)"
+                class="inline-flex items-center justify-center whitespace-nowrap text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 h-9 rounded-md px-3"
+              >
+                <ion-icon name="trash-sharp"></ion-icon>
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="mt-4">
+        <div class="flex justify-between">
+          <span>Subtotal:</span>
+          <span>{{ getSubTotal() | currency:'USD':'symbol':'1.2-2' }}</span>
+        </div>
+        <div class="flex justify-between">
+          <span>Impuestos (13% IVA):</span>
+          <span>{{ getImpuesto() | currency:'USD':'symbol':'1.2-2' }}</span>
+        </div>
+        <div class="flex justify-between font-bold">
+          <span>Total:</span>
+          <span>{{ getTotal() | currency:'USD':'symbol':'1.2-2' }}</span>
+        </div>
+      </div>
+      <div class="mt-4 flex justify-end">
+        <ion-button type="button" color="medium" (click)="close()"
+          >Cancelar</ion-button
+        >
+        <ion-button
+          (click)="pagar()"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-primary-foreground h-10 px-4 py-2"
+        >
+          Pagar
+        </ion-button>
+      </div>
+    </div>
+  </div>
+</ion-content>

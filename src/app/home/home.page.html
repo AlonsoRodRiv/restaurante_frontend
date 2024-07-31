@@ -1,0 +1,62 @@
+<ion-header [translucent]="true" *ngIf="isMobile">
+  <ion-toolbar>
+    <ion-menu-button slot="start" *ngIf="!isMobile"></ion-menu-button>
+    <ion-title>Menu</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" id="main-content">
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="openCart()" #cart>
+      <div class="cart-length">{{cartItemCount?.value}}</div>
+      <ion-icon name="cart" class="cart-icon"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+  <div class="flex items-center justify-between">
+    <h2
+      class="p-5 text-3xl font-semibold text-accent-foreground dark:text-white"
+    >
+      Menu
+    </h2>
+    <ion-button
+      fill="outline"
+      expand="block"
+      (click)="AddNewProduct()"
+      class="px-4 py-2 rounded-lg transition-colors"
+      >Add Item</ion-button
+    >
+  </div>
+  <ion-grid class="mt-6">
+    <ion-row>
+      <ion-col size="12" size-sm="6" size-lg="3" *ngFor="let item of menuItems">
+        <ion-card
+          class="bg-card rounded-lg shadow-lg overflow-hidden hover:scale-105 transition-transform"
+        >
+          <img
+            [src]="item.image"
+            [alt]="item.name"
+            class="w-full h-48 object-cover"
+          />
+          <ion-card-header>
+            <ion-card-title class="text-xl font-semibold"
+              >{{item.name}}</ion-card-title
+            >
+            <ion-card-subtitle class="text-muted-foreground"
+              >{{item.description}}</ion-card-subtitle
+            >
+            <p class="text-sm font-bold">
+              {{ item.price | currency : "USD" : "symbol" : "1.2-2" }}
+            </p>
+
+            <ion-button expand="block" fill="outline" (click)="addToCart(item)">
+              <ion-icon name="add"></ion-icon>
+
+              Add to Cart
+            </ion-button>
+          </ion-card-header>
+        </ion-card>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

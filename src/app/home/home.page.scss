@@ -1,0 +1,23 @@
+#container p {
+  font-size: 16px;
+  line-height: 22px;
+
+  color: #8c8c8c;
+
+  margin: 0;
+}
+
+.cart-icon {
+  font-size: 40px;
+}
+
+.cart-length {
+  color: var(--ion-color-primary);
+  position: absolute;
+  top: 15px;
+  left: 18px;
+  font-weight: 600;
+  font-size: 1em;
+  min-width: 25px;
+  z-index: 10;
+}

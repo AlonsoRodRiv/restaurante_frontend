@@ -1,0 +1,86 @@
+<ion-header *ngIf="isMobile">
+  <ion-toolbar>
+    <ion-menu-button slot="start" *ngIf="!isMobile"></ion-menu-button>
+    <ion-title>Sales History</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding">
+  <div class="bg-background rounded-lg shadow-md p-6">
+    <h2 class="text-xl font-bold mb-4">Ventas Realizadas</h2>
+    <div class="relative w-full overflow-auto">
+      <table class="w-full caption-bottom text-sm">
+        <thead class="[&_tr]:border-b">
+          <tr
+            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+          >
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Fecha
+            </th>
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Productos
+            </th>
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Subtotal
+            </th>
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Impuestos
+            </th>
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Total
+            </th>
+            <th
+              class="h-12 px-4 text-left align-middle font-medium text-muted-foreground [&:has([role=checkbox])]:pr-0"
+            >
+              Acciones
+            </th>
+          </tr>
+        </thead>
+        <tbody class="[&_tr:last-child]:border-0">
+          <tr
+            *ngFor="let venta of sales"
+            class="border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted"
+          >
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              {{ venta.date | date:'medium' }}
+            </td>
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              <div *ngFor="let producto of venta.products">
+                {{ producto.name }} (x{{ producto.amount }})
+              </div>
+            </td>
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              {{ venta.subtotal | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              {{ venta.tax | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              {{ venta.total | currency:'USD':'symbol':'1.2-2' }}
+            </td>
+            <td class="p-4 align-middle [&:has([role=checkbox])]:pr-0">
+              <ion-button
+                fill="clear"
+                (click)="verDetalle(venta)"
+                class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10"
+              >
+                <ion-icon name="eye-outline" class="h-4 w-4"></ion-icon>
+                <span class="sr-only">Ver Detalle</span>
+              </ion-button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</ion-content>
