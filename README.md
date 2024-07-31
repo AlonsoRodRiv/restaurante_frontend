@@ -40,8 +40,12 @@ export const environment = {
 };
 
 ```
+3. Ademas debes activar la opciones en Console firebase:
+4. FireStore Database: Activar 
+5. Authentication: Activar registrar por email y password
+6. Storage: Activar
 
-3. Para correr el proyecto `ng serve`
+7. Para correr el proyecto `ng serve`
 
 ## Uso de la aplicación
 
