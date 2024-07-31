@@ -20,7 +20,8 @@ La aplicación Restaurante App es una plataforma de pedido en línea Nuestra apl
 ## Instalación y configuración
 
 1. Descargue e instale las dependencias ejecutando `npm install`.
-2. Configure la base de datos en firebase en `environment` cambiando los valores `firebaseConfig` con los valores de su cuenta:
+2. Configure la base de datos en firebase en `environment` cambiando los valores `firebaseConfig` con los valores de su
+  cuenta del proyecto la Informacion la encuentras en ajustes Informacion del Proyecto de Firebase:
 
 - configurar el siguiente archivo con los valores de tu app firebase:
 
